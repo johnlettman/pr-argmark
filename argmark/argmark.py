@@ -5,6 +5,7 @@ import re
 from typing import List
 from inspect import cleandoc
 from mdutils.mdutils import MdUtils
+from strip_ansi import strip_ansi
 
 
 def inline_code(code: str) -> str:
@@ -89,7 +90,7 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
         mdFile.new_paragraph(parser.epilog)
 
     mdFile.new_header(level=2, title="Usage")
-    mdFile.insert_code(parser.format_usage(), language="bash")
+    mdFile.insert_code(strip_ansi(parser.format_usage()), language="bash")
 
     used_actions = {}
     options = ["short", "long", "default", "help"]
