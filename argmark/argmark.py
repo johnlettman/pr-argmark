@@ -99,10 +99,6 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
         mdFile.new_header(level=2, title="Description")
         mdFile.new_paragraph(strip_markup(parser.description))
 
-    if parser.epilog:
-        mdFile.new_header(level=2, title="Epilog")
-        mdFile.new_paragraph(strip_markup(parser.epilog))
-
     mdFile.new_header(level=2, title="Usage")
     mdFile.insert_code(strip_markup(parser.format_usage()), language="bash")
 
@@ -156,6 +152,10 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
         text_align="left",
     )
     mdFile.create_md_file()
+
+    if parser.epilog:
+        mdFile.new_header(level=2, title="Epilog")
+        mdFile.new_paragraph(strip_markup(parser.epilog))
 
 
 def main():
