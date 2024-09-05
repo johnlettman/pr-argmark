@@ -79,14 +79,14 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
         mdFile = MdUtils(file_name=os.path.splitext(parser.prog)[0], title=parser.prog)
 
     if parser.description:
-        mdFile.new_header(level=1, title="Description")
+        mdFile.new_header(level=2, title="Description")
         mdFile.new_paragraph(parser.description)
 
     if parser.epilog:
-        mdFile.new_header(level=1, title="Epilog")
+        mdFile.new_header(level=2, title="Epilog")
         mdFile.new_paragraph(parser.epilog)
 
-    mdFile.new_header(level=1, title="Usage:")
+    mdFile.new_header(level=2, title="Usage")
     mdFile.insert_code(parser.format_usage(), language="bash")
 
     used_actions = {}
