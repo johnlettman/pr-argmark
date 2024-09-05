@@ -127,7 +127,7 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
 
         i += 1
 
-    mdFile.new_header(level=1, title="Arguments")
+    mdFile.new_header(level=2, title="Arguments")
     logging.debug(f"Creating Table with text={options}")
     logging.debug(f"Pre map {options}")
     options = [
