@@ -75,8 +75,10 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
     if parser.prog is None:
         logging.info("Saving as foo.md")
         mdFile = MdUtils(file_name="foo")
+        mdFile.new_header(level=1, title="Foo")
     else:
-        mdFile = MdUtils(file_name=os.path.splitext(parser.prog)[0], title=parser.prog)
+        mdFile = MdUtils(file_name=os.path.splitext(parser.prog)[0])
+        mdFile.new_header(level=1, title=parser.prog)
 
     if parser.description:
         mdFile.new_header(level=2, title="Description")
