@@ -6,6 +6,20 @@ from typing import List
 from inspect import cleandoc
 from mdutils.mdutils import MdUtils
 from strip_ansi import strip_ansi
+from rich_tools import strip_markup_tags as strip_rich_tags
+
+
+def strip_markup(text: str) -> str:
+    """
+    Strip markup (e.g., rich tags or ANSI sequences) from text.
+
+    Args:
+        text (str): Text to normalize by removing rich tags and ANSI sequences.
+
+    Returns:
+        str: Normalized text.
+    """
+    return strip_rich_tags(strip_ansi(text))
 
 
 def inline_code(code: str) -> str:
@@ -83,14 +97,14 @@ def md_help(parser: _argparse.ArgumentParser) -> None:
 
     if parser.description:
         mdFile.new_header(level=2, title="Description")
-        mdFile.new_paragraph(parser.description)
+        mdFile.new_paragraph(strip_markup(parser.description))
 
     if parser.epilog:
         mdFile.new_header(level=2, title="Epilog")
-        mdFile.new_paragraph(parser.epilog)
+        mdFile.new_paragraph(strip_markup(parser.epilog))
 
     mdFile.new_header(level=2, title="Usage")
-    mdFile.insert_code(strip_ansi(parser.format_usage()), language="bash")
+    mdFile.insert_code(strip_markup(parser.format_usage()), language="bash")
 
     used_actions = {}
     options = ["short", "long", "default", "help"]
