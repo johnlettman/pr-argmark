@@ -1,4 +1,4 @@
 mdutils>=1.2.2
 setuptools>=46.4.0.post20200518
 strip_ansi>=0.1.1
-rich-tools>=0.5.0
+rich-tools @ git+https://github.com/johnlettman/pr-rich_tools@bump/rich
